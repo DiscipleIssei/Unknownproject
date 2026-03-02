@@ -1,22 +1,124 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Happy Birthday</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: pink;
-      text-align: center;
-      font-family: Arial;
-      margin-top: 40%;
-    }
-    h1 {
-      color: white;
-      font-size: 40px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    overflow-x: hidden;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 2.8em;
+    color: white;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 25px white; }
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff6b81;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #ffe6ea;
+}
+
+#letter {
+    display: none;
+    color: white;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+img {
+    width: 200px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+</style>
 </head>
+
 <body>
-  <h1>🎉 Happy Birthday My Love 🎉</h1>
+
+<div class="container">
+    <h1> Happy Birthday my Iris, Love, Baby, Madam 🫶🏼 </h1>
+
+    <!-- Your photo -->
+    <img src="Iris.jpeg" alt="Us">
+
+    <br>
+
+    <button onclick="showLetter()">Click for Surprise 💌</button>
+
+    <div id="letter">
+        You are the best thing that ever happened to me.<br>
+        I thank God every day for you.<br>
+        I'll do my best to love you, protect you, and grow with you. ❤️
+    </div>
+</div>
+
+<!-- Music -->
+<audio autoplay loop>
+  <source src="fitterkarma.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Confetti Script -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function showLetter() {
+    document.getElementById("letter").style.display = "block";
+    confetti({
+        particleCount: 200,
+        spread: 100
+    });
+}
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.innerText = "❤️";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-10px";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+    let duration = Math.random() * 3 + 3;
+    heart.animate([{ transform: `translateY(-100vh)` }], { duration: duration * 1000 });
+    setTimeout(() => heart.remove(), duration * 1000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
 </body>
-</html>
+  </html>
