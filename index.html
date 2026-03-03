@@ -87,37 +87,28 @@ canvas {
 </div>
 
 <!-- Music -->
-<audio autoplay loop>
-  <source src="fitterkarma.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="auto">
+    <source src="./fitterkarma.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Confetti Script -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-function showLetter() {
+function startExperience() {
+
     document.getElementById("letter").style.display = "block";
-    confetti({
-        particleCount: 200,
-        spread: 100
+
+    var music = document.getElementById("bgMusic");
+
+    music.load();
+    music.volume = 1;
+    music.play().catch(function(error) {
+        console.log("Playback failed:", error);
+        alert("Tap again to enable music 🎵");
     });
-}
 
-// Floating hearts
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.innerText = "❤️";
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.bottom = "-10px";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-    document.body.appendChild(heart);
-    let duration = Math.random() * 3 + 3;
-    heart.animate([{ transform: `translateY(-100vh)` }], { duration: duration * 1000 });
-    setTimeout(() => heart.remove(), duration * 1000);
 }
-
-setInterval(createHeart, 300);
 </script>
 
 </body>
