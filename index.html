@@ -87,28 +87,45 @@ canvas {
 </div>
 
 <!-- Music -->
-<audio id="bgMusic" loop preload="auto">
-    <source src="./fitterkarma.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" loop>
+  <source src="https://discipleissei.github.io/Unknownproject/fitterkarma.mp3" type="audio/mpeg">
+</audio> 
 
 <!-- Confetti Script -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-function startExperience() {
-
+function showLetter() {
     document.getElementById("letter").style.display = "block";
 
     var music = document.getElementById("bgMusic");
-
     music.load();
-    music.volume = 1;
-    music.play().catch(function(error) {
-        console.log("Playback failed:", error);
-        alert("Tap again to enable music 🎵");
+    music.play().catch(error => {
+        console.log("Audio blocked, tap again", error);
     });
 
+    confetti({
+        particleCount: 200,
+        spread: 100
+    });
 }
+
+// Floating hearts (leave as is)
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.innerText = "❤️";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-10px";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    let duration = Math.random() * 3 + 3;
+    heart.animate([{ transform: "translateY(-100vh)" }], { duration: duration * 1000 });
+    setTimeout(() => heart.remove(), duration * 1000);
+}
+
+setInterval(createHeart, 300);
 </script>
 
 </body>
